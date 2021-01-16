@@ -11,7 +11,6 @@ const client = new MongoClient(uri);
 const router = express.Router();
 
 let photos = [
-  /*
   {
     id: "3VCrw7nHH4A",
     name: "San Salvador City Card",
@@ -23,7 +22,61 @@ let photos = [
     width: 5492,
     height: 3043,
   },
-  */
+  {
+    id: "3VCrw7nHH4A",
+    name: "Eskisehir City Card",
+    key: "eskisehir-turkey_Q1_city-card_3VCrw7nHH4A",
+    value:
+      "https://soloselect.s3.eu-central-1.amazonaws.com/san-salvador-de-jujuy-argentina_Q44217_city-card_3VCrw7nHH4A",
+    type: "city-card",
+    wkd_id: "Q1",
+    width: 5492,
+    height: 3043,
+  },
+  {
+    id: "3VCrw7nHH4A",
+    name: "Istanbul City Card",
+    key: "eskisehir-turkey_Q1_city-card_3VCrw7nHH4A",
+    value:
+      "https://soloselect.s3.eu-central-1.amazonaws.com/san-salvador-de-jujuy-argentina_Q44217_city-card_3VCrw7nHH4A",
+    type: "city-card",
+    wkd_id: "Q2",
+    width: 5492,
+    height: 3043,
+  },
+  {
+    id: "3VCrw7nHH4A",
+    name: "Istanbul City Card",
+    key: "eskisehir-turkey_Q1_city-card_3VCrw7nHH4A",
+    value:
+      "https://soloselect.s3.eu-central-1.amazonaws.com/san-salvador-de-jujuy-argentina_Q44217_city-card_3VCrw7nHH4A",
+    type: "city-card",
+    wkd_id: "Q2",
+    width: 5492,
+    height: 3043,
+  },
+  {
+    id: "3VCrw7nHH4A",
+    name: "Istanbul City Card",
+    key: "eskisehir-turkey_Q1_city-card_3VCrw7nHH4A",
+    value:
+      "https://soloselect.s3.eu-central-1.amazonaws.com/san-salvador-de-jujuy-argentina_Q44217_city-card_3VCrw7nHH4A",
+    type: "city-card",
+    wkd_id: "Q2",
+    width: 5492,
+    height: 3043,
+  },
+  {
+    id: "3VCrw7nHH4A",
+    name: "Eskisehir City Card",
+    key: "eskisehir-turkey_Q1_city-card_3VCrw7nHH4A",
+    value:
+      "https://soloselect.s3.eu-central-1.amazonaws.com/san-salvador-de-jujuy-argentina_Q44217_city-card_3VCrw7nHH4A",
+    type: "city-card",
+    wkd_id: "Q1",
+    width: 5492,
+    height: 3043,
+  },
 ];
 
 async function run(incomingPhoto) {
@@ -65,7 +118,7 @@ router.post("/", (req, res) => {
   res.json(photos);
 });
 
-router.delete("/accounts/:id", (req, res) => {
+router.delete("/photos/:id", (req, res) => {
   const photoId = req.params.id;
   const newPhotos = photos.filter((photo) => photo.id != photoId);
 
