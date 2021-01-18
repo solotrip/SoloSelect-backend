@@ -4,9 +4,17 @@ import { default as mongodb } from "mongodb";
 
 let MongoClient = mongodb.MongoClient;
 
-const uri = "mongodb://localhost:27017/";
+const uri1 = "mongodb://localhost:27017/";
+const uri =
+  "mongodb+srv://yerlifaruk:123123a@yerlifaruk.sdcam.mongodb.net/solotrip?retryWrites=true&w=majority";
 
-const client = new MongoClient(uri);
+const uri2 =
+  "mongodb+srv://solotrip:test@yerlifaruk.mongodb.net/solotrip?retryWrites=true&w=majority&useNewUrlParser=true&useUnifiedTopology=true";
+
+const client = new MongoClient(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const router = express.Router();
 
@@ -84,8 +92,54 @@ async function run(incomingPhoto) {
     // Connect the client to the server
     await client.connect();
     // Establish and verify connection
-    await client.db("solotrip").collection("photos").insertOne(incomingPhoto);
+    //await client.db("solotrip").collection("photos").insertOne(incomingPhoto);
+
     console.log("Connected successfully to server");
+
+    const db = client.db("solotrip");
+    const col = db.collection("photos");
+    const p = await col.insertOne(incomingPhoto);
+    const myDoc = await col.findOne();
+    console.log(myDoc);
+  } catch (err) {
+    console.log(err.stack);
+  } finally {
+    // Ensures that the client will close when you finish/error
+    await client.close();
+  }
+}
+
+async function getAllPhotos() {
+  try {
+    let cursorElements = [];
+    // Connect the client to the server
+    await client.connect();
+    // Establish and verify connection
+    //await client.db("solotrip").collection("photos").insertOne(incomingPhoto);
+
+    console.log("Connected successfully to server");
+
+    const db = client.db("solotrip");
+    const col = db.collection("photos");
+
+    const cursor = col.find();
+
+    const allValues = await cursor.toArray();
+
+    console.log("all Values are :", allValues);
+
+    /*
+    await cursor.forEach((doc) => {
+      console.log(doc);
+      cursorElements.push(doc);
+    });
+    */
+
+    photos = allValues;
+
+    return allValues;
+  } catch (err) {
+    console.log(err.stack);
   } finally {
     // Ensures that the client will close when you finish/error
     await client.close();
@@ -93,7 +147,11 @@ async function run(incomingPhoto) {
 }
 
 router.get("/", (req, res) => {
-  res.json(photos);
+  const photosCome = getAllPhotos().then((x) => {
+    console.log("photos coming to api point: ", x);
+    //photos.push(photosCome);
+    res.json(photos);
+  });
 });
 
 router.get("/:id", (req, res) => {

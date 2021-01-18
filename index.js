@@ -11,7 +11,14 @@ app.use(cors());
 
 app.use("/photos", photoRoutes);
 
+//Local Mongo
 const CONECTION_URL = "mongodb://localhost:27017/solotrip";
+
+//Mongodb Atlas
+/*const CONECTION_URL =
+  "mongodb+srv://solotrip:test@yerlifaruk.sdcam.mongodb.net/solotrip?retryWrites=true&w=majority";
+
+  */
 
 const PORT = process.env.PORT || 5001;
 
