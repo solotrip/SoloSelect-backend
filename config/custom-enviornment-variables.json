@@ -1,0 +1,12 @@
+{
+  "PORT": "SOLOSELECT_PORT",
+  "DB_URI": "SOLOSELECT_DB_URI",
+  "S3": {
+    "regions": "SOLOSELECT_S3_REGION",
+    "credentials": {
+      "accessKeyId": "SOLOSELECT_S3_ACC_KEY_ID",
+      "secretAccessKey": "SOLOSELECT_S3_SEC_ACC_KEY"
+    }
+  },
+  "S3_MEDIA_BUCKET_NAME": "SOLOSELECT_S3_MEDIA_BUCKET_NAME"
+}
